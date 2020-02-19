@@ -10,7 +10,7 @@ RUN apt-get update \
 # Install Workspace for Python 
 
 RUN if [ $workspace = "theia" ] ; then \
-	wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/theia/pre-build.sh \
+	wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/theia/python/python-3.4/pre-build.sh \
     && chmod 775 ./pre-build.sh && sh pre-build.sh ; fi
 
 WORKDIR /var/
@@ -18,6 +18,14 @@ WORKDIR /var/
 RUN if [ $workspace = "theia" ] ; then \
 	wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/theia/build.sh \
     && chmod 775 ./build.sh && sh build.sh ; fi
+
+# Get RUN Script
+
+WORKDIR /var/theia/
+
+RUN if [ $workspace = "theia" ] ; then \
+	wget https://codejudge-starter-repo-artifacts.s3.ap-south-1.amazonaws.com/theia/run.sh \
+    && chmod 775 ./run.sh ; fi
 
 # End Install for Workspace 
 
